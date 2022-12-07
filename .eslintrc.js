@@ -29,7 +29,7 @@ module.exports = {
         ignoreRegExpLiterals: true,
       },
     ],
-    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-explicit-any": "error",
     "vue/attributes-order": [
       "error",
       {
