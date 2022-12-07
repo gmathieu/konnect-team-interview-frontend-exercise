@@ -20,7 +20,7 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.vue", "server/**/*.ts"],
+  "include": ["src/**/*.ts", "src/**/*.vue", "server/**/*.ts", "types/**/*.ts"],
   "exclude": ["node_modules", "dist"],
   "ts-node": {
     // these options are overrides used only by ts-node

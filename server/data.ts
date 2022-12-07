@@ -1,9 +1,10 @@
 import { faker } from "@faker-js/faker";
+import { User, Service } from "types";
 
 const developerCount = 10;
 
 // Generate developers for versions
-const developers = [...Array(developerCount).keys()].map(() => {
+const developers = [...Array(developerCount).keys()].map((): User => {
   const sex = Math.random() >= 0.95 ? "female" : "male";
   const firstName = faker.name.firstName(sex);
   const lastName = faker.name.lastName(sex);
@@ -17,12 +18,12 @@ const developers = [...Array(developerCount).keys()].map(() => {
 });
 
 // Get a random developer from the developers array
-const getDeveloper = (): Record<string, string> =>
+const getDeveloper = (): User =>
   developers[faker.datatype.number({ min: 0, max: developerCount - 1 })];
 
 // NOTE: For the search functionality created in `/server/app.ts` arrays may ONLY be the value of a top-level property
 const data = () => {
-  const data: any = { services: [] };
+  const data: { services: Service[] } = { services: [] };
 
   for (let i = 0; i < Math.random() * 100 + 50; i++) {
     const published = Math.random() < 0.75;
@@ -90,5 +91,9 @@ const data = () => {
 };
 
 const response = data();
+
+export function isKnownData(value: unknown): value is keyof typeof response {
+  return typeof value === "string" && value in response;
+}
 
 export default response;

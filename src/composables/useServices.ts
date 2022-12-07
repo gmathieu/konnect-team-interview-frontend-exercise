@@ -1,15 +1,16 @@
 import { ref, onBeforeMount } from "vue";
 import axios from "axios";
+import { Service } from "types";
 
 // This composable is a simplified example for the exercise.
 // Feel free to leave as-is, modify, or remove this file (and any others) as desired.
 // https://vuejs.org/guide/reusability/composables.html
 
-export default function useServices(): any {
-  const services = ref<any[]>([]);
-  const loading = ref<any>(false);
+export default function useServices() {
+  const services = ref<Service[]>([]);
+  const loading = ref(false);
 
-  const getServices = async (): Promise<any> => {
+  const getServices = async () => {
     // Initialize loading state
     loading.value = true;
 

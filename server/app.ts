@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
-import response from "./data";
+import response, { isKnownData } from "./data";
 
 const app = express();
 
@@ -14,7 +14,8 @@ app.use(
 // Data route
 app.route("/api/:entity").get((req: Request, res: Response) => {
   const { entity } = req.params;
-  const data: Record<string, any>[] = response[entity];
+  if (!isKnownData(entity)) return res.status(404).send(`Unknown ${entity}`);
+  const data = response[entity];
 
   if (!data) {
     return res.status(404).send("Not found");
@@ -31,12 +32,13 @@ app.route("/api/:entity").get((req: Request, res: Response) => {
       .toLowerCase()
       .includes(query) || false;
 
-  let filteredData: Record<string, any>[];
+  let filteredData: typeof data;
 
   if (!query) {
     filteredData = data;
   } else {
     // Filter the response data if a filter query string is present
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     filteredData = data.filter((responseData: Record<string, any>) => {
       for (const property in responseData) {
         // Only allow searching when the object property is typeof `string`

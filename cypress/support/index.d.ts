@@ -23,7 +23,7 @@ declare global {
        * @param component Vue Component or JSX Element to mount
        * @param options Options passed to Vue Test Utils
        */
-      mount(component: ComputedOptions, options?: any): Chainable<Element>;
+      mount(component: ComputedOptions, options?: unknown): Chainable<Element>;
     }
   }
 }
