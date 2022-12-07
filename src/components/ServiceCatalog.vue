@@ -5,15 +5,9 @@
       v-model="searchQuery"
       class="search-input"
       placeholder="Search services"
-    >
-    <ul
-      class="catalog"
-    >
-      <li
-        v-for="service in services"
-        :key="service.id"
-        class="service"
-      >
+    />
+    <ul class="catalog">
+      <li v-for="service in services" :key="service.id" class="service">
         <div>
           <p>
             {{ service.name }}
@@ -26,25 +20,25 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import useServices from '@/composables/useServices'
+import { defineComponent, ref } from "vue";
+import useServices from "@/composables/useServices";
 
 export default defineComponent({
-  name: 'ServiceCatalog',
+  name: "ServiceCatalog",
   setup() {
     // Import services from the composable
-    const { services, loading } = useServices()
+    const { services, loading } = useServices();
 
     // Set the search string to a Vue ref
-    const searchQuery = ref('')
+    const searchQuery = ref("");
 
     return {
       services,
       loading,
       searchQuery,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss" scoped>

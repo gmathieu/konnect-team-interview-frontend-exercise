@@ -1,10 +1,10 @@
-import { defineStore } from 'pinia'
+import { defineStore } from "pinia";
 
 // Example Pinia store: https://pinia.vuejs.org/
 // This code is not utilized in the take-home exercise starter template.
 
 export const useCounterStore = defineStore({
-  id: 'counter',
+  id: "counter",
   state: () => ({
     count: 0,
   }),
@@ -13,7 +13,7 @@ export const useCounterStore = defineStore({
   },
   actions: {
     increment() {
-      this.count++
+      this.count++;
     },
   },
-})
+});

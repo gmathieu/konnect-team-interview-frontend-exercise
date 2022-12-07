@@ -1,22 +1,22 @@
-import { defineConfig } from 'cypress'
+import { defineConfig } from "cypress";
 
 export default defineConfig({
   component: {
     devServer: {
-      framework: 'vue',
-      bundler: 'vite',
+      framework: "vue",
+      bundler: "vite",
     },
     viewportHeight: 800,
     viewportWidth: 600,
-    specPattern: 'src/**/*.cy.ts',
-    supportFile: 'cypress/support/index.ts',
+    specPattern: "src/**/*.cy.ts",
+    supportFile: "cypress/support/index.ts",
   },
   includeShadowDom: true,
-  fixturesFolder: 'cypress/fixtures',
-  screenshotsFolder: 'cypress/screenshots',
-  videosFolder: 'cypress/videos',
+  fixturesFolder: "cypress/fixtures",
+  screenshotsFolder: "cypress/screenshots",
+  videosFolder: "cypress/videos",
   retries: {
     runMode: 1,
   },
   trashAssetsBeforeRuns: false,
-})
+});

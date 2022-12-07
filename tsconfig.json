@@ -11,35 +11,17 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "baseUrl": ".",
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable"
-    ],
+    "lib": ["esnext", "dom", "dom.iterable"],
     "outDir": "dist",
     "declaration": true,
     "declarationDir": "dist/types",
-    "types": [
-      "vite/client",
-      "node",
-      "cypress",
-      "./cypress/support"
-    ],
+    "types": ["vite/client", "node", "cypress", "./cypress/support"],
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
-    },
+      "@/*": ["src/*"]
+    }
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.vue",
-    "server/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-  ],
+  "include": ["src/**/*.ts", "src/**/*.vue", "server/**/*.ts"],
+  "exclude": ["node_modules", "dist"],
   "ts-node": {
     // these options are overrides used only by ts-node
     // same as the --compilerOptions flag and the TS_NODE_COMPILER_OPTIONS environment variable
