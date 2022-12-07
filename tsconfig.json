@@ -18,7 +18,8 @@
     "types": ["vite/client", "node", "cypress", "./cypress/support"],
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "skipLibCheck": true
   },
   "include": ["src/**/*.ts", "src/**/*.vue", "server/**/*.ts", "types/**/*.ts"],
   "exclude": ["node_modules", "dist"],
