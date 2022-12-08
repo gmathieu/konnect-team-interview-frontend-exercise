@@ -1,13 +1,10 @@
 <template>
-  <div class="page-header">
-    <div class="flex-grow-1">
-      <h1 class="style-heading-1 mb-4">Service Hub</h1>
-      <p class="style-body-lg-bold mb-5">
-        Organize services, manage and track versioning and API service
-        documentation. <a href="#">Learn more</a>
-      </p>
-    </div>
-    <div class="page-header-options">
+  <PageLayout title="Service Hub">
+    <template #description>
+      Organize services, manage and track versioning and API service
+      documentation. <a href="#">Learn more</a>
+    </template>
+    <template #actions>
       <KInput
         v-model="searchQuery"
         class="mb-5"
@@ -15,15 +12,15 @@
         type="search"
       >
       </KInput>
+    </template>
+    <div class="service-catalog">
+      <KCatalog :fetcher="fetchServices" :search-input="searchQuery"
+        ><template #body="{ data }: { data: Service[] }">
+          <ServiceCard v-for="item in data" :key="item.id" :item="item">
+          </ServiceCard> </template
+      ></KCatalog>
     </div>
-  </div>
-  <div class="service-catalog">
-    <KCatalog :fetcher="fetchServices" :search-input="searchQuery"
-      ><template #body="{ data }: { data: Service[] }">
-        <ServiceCard v-for="item in data" :key="item.id" :item="item">
-        </ServiceCard> </template
-    ></KCatalog>
-  </div>
+  </PageLayout>
 </template>
 
 <script lang="ts">
@@ -32,10 +29,11 @@ import { Service } from "types";
 import { defineComponent, ref } from "vue";
 import { useServicesFetcher } from "../composables/useServicesFetcher";
 import ServiceCard from "@/components/ServiceCard.vue";
+import PageLayout from "@/components/PageLayout.vue";
 
 export default defineComponent({
-  name: "ServiceCatalog",
-  components: { ServiceCard },
+  name: "ServiceHubPage",
+  components: { ServiceCard, PageLayout },
   setup() {
     return {
       fetchServices: useServicesFetcher(),
@@ -47,15 +45,6 @@ export default defineComponent({
 
 <style lang="scss">
 @import "../styles/mixins.scss";
-
-.page-header {
-  display: flex;
-  flex-direction: column;
-
-  @include respond-to("small") {
-    flex-direction: row;
-  }
-}
 
 .service-catalog {
   .k-catalog-page {

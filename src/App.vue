@@ -4,9 +4,7 @@
       <router-link to="/"><KongLogo /></router-link>
     </nav>
   </header>
-  <main class="px-5 py-7">
-    <router-view />
-  </main>
+  <router-view />
 </template>
 
 <script lang="ts">
