@@ -1,5 +1,6 @@
 <template>
   <main class="px-5 py-7">
+    <KBreadcrumbs v-if="breadcrumbs" :items="breadcrumbs" />
     <div class="page-header">
       <div class="flex-grow-1">
         <h1 class="style-heading-1 mb-4">{{ title }}</h1>
@@ -16,7 +17,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, PropType } from "vue";
+import { BreadcrumbItem } from "@kong/kongponents/dist/types/components/KBreadcrumbs/KBreadcrumbs.vue";
 
 export default defineComponent({
   name: "PageLayout",
@@ -24,6 +26,10 @@ export default defineComponent({
     title: {
       type: String,
       required: true,
+    },
+    breadcrumbs: {
+      type: Object as PropType<BreadcrumbItem[]>,
+      default: undefined,
     },
   },
   methods: {

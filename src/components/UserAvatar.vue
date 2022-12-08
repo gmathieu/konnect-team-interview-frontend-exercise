@@ -1,6 +1,7 @@
 <template>
-  <span class="user-avatar d-flex align-items-center">
-    <img :src="avatar" :title="name" />
+  <span class="user-avatar align-items-center">
+    <KIcon v-if="hasError" class="d-block" icon="teamMember" size="36" />
+    <img v-else :src="avatar" :title="name" @error="setHasError" />
   </span>
 </template>
 
@@ -12,17 +13,26 @@ export default defineComponent({
   props: {
     name: {
       type: String,
-      required: true,
+      default: "Team member",
     },
     avatar: {
       type: String,
-      required: true,
+      default: undefined,
+    },
+  },
+  data() {
+    return { hasError: !this.$props.avatar };
+  },
+  methods: {
+    setHasError() {
+      this.hasError = true;
     },
   },
 });
 </script>
 <style lang="scss" scoped>
 .user-avatar {
+  display: inline-flex;
   border-radius: 9999px;
   height: 36px;
   width: 36px;

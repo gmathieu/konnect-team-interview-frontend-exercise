@@ -1,8 +1,8 @@
 <template>
   <KCard
     :body="item.description"
-    class="service-card fill-height responsive"
-    :title="item.name"
+    class="service-card fill-height responsive linkbox"
+    has-hover
   >
     <template #statusHat>
       <span v-if="item.published" class="d-flex align-items-center"
@@ -17,7 +17,13 @@
         ><KIcon class="mr-1" icon="disabled" size="20" /> Unpublished</span
       >
     </template>
-    <template #title>{{ item.name }}</template>
+    <template #title>
+      <RouterLink
+        class="color-grey-600 linkbox-overlay"
+        :to="{ name: 'service', params: { serviceId: item.id } }"
+        >{{ item.name }}</RouterLink
+      >
+    </template>
     <template #actions>
       <KButton
         appearance="secondary"
@@ -71,6 +77,22 @@ export default defineComponent({
 @import "../styles/mixins.scss";
 
 .service-card {
+  &.linkbox {
+    position: relative;
+
+    .linkbox-overlay::before {
+      content: "";
+      cursor: inherit;
+      display: block;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
   &.responsive {
     .k-card-header {
       flex-direction: column;

@@ -27,16 +27,16 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Service } from "types";
 import { defineComponent, ref } from "vue";
-import { useServicesFetcher } from "../composables/useServicesFetcher";
 import ServiceCard from "@/components/ServiceCard.vue";
 import PageLayout from "@/components/PageLayout.vue";
+import { useServicesStore } from "../stores/servicesStore";
 
 export default defineComponent({
   name: "ServiceHubPage",
   components: { ServiceCard, PageLayout },
   setup() {
     return {
-      fetchServices: useServicesFetcher(),
+      fetchServices: useServicesStore().fetcher,
       searchQuery: ref(""),
     };
   },
