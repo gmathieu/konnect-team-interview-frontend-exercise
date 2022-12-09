@@ -12,6 +12,13 @@ app.use(
 );
 
 // Data route
+app.route("/api/service/:id").delete((req: Request, res: Response) => {
+  const { id } = req.params;
+  const index = response.services.findIndex((s) => s.id === id);
+  if (index > -1) response.services.splice(index, 1);
+  res.status(200).send({ status: "ok", id });
+});
+
 app.route("/api/:entity").get((req: Request, res: Response) => {
   const { entity } = req.params;
   if (!isKnownData(entity)) return res.status(404).send(`Unknown ${entity}`);
