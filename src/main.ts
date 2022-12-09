@@ -1,11 +1,17 @@
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
-import App from './App.vue'
-import router from './router'
+import "@kong/kongponents/dist/style.css";
 
-const app = createApp(App)
+import { createApp } from "vue";
+import { createPinia } from "pinia";
+import App from "./App.vue";
+import router from "./router";
+import Kongponents, { ToastManager } from "@kong/kongponents";
 
-app.use(createPinia())
-app.use(router)
+const app = createApp(App);
 
-app.mount('#app')
+app.config.globalProperties.$toaster = new ToastManager();
+
+app.use(createPinia());
+app.use(router);
+app.use(Kongponents);
+
+app.mount("#app");

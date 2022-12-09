@@ -8,7 +8,7 @@ on:
     # Must define secrets here so that the calling workflow can pass in the NPM_TOKEN needed to install private packages.
     secrets:
       NPM_TOKEN:
-        description: 'The NPM_TOKEN passed from the caller workflow as it is not available within workflow_call.'
+        description: "The NPM_TOKEN passed from the caller workflow as it is not available within workflow_call."
         required: true
   # Allow workflow to be called manually
   workflow_dispatch:
@@ -29,11 +29,13 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version-file: '.nvmrc'
+          node-version-file: ".nvmrc"
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Prettier
+        run: yarn prettier --check .
       - name: Lint
         run: yarn lint
 

@@ -1,51 +1,48 @@
 <template>
   <header>
-    <div class="nav">
-      <router-link to="/">
-        Home
-      </router-link>
-    </div>
+    <nav class="nav px-5">
+      <router-link to="/"><KongLogo /></router-link>
+    </nav>
   </header>
-  <main>
-    <router-view />
-  </main>
+  <router-view />
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from "vue";
+import KongLogo from "@/components/KongLogo.vue";
 
 export default defineComponent({
-  name: 'App',
-})
+  name: "App",
+  components: { KongLogo },
+});
 </script>
 
 <style lang="scss">
-html {
-  margin: 0;
-  padding: 0;
-  font-size: 10px;
-}
+@import "./styles/reset.scss";
 
 body {
-  font-family: Arial, sans-serif;
-  font-weight: 400;
-  font-size: 1.6rem;
-  line-height: 1.2;
-  margin: 0 auto;
+  background-color: var(--grey-100);
+  font-family: "Inter", Helvetica, Arial, sans-serif;
+  color: var(--grey-600);
 }
 
 .nav {
-  padding: 16px;
-  margin-bottom: 4rem;
-  border-bottom: 1px solid #333;
+  align-items: center;
+  background: linear-gradient(
+    180deg,
+    var(--black-500) 0%,
+    var(--blue-600) 100%
+  );
+  display: flex;
+  height: 70px;
+}
 
-  a {
-    font-weight: 700;
-    color: blue;
+a {
+  color: var(--blue-500);
+  text-decoration: none;
 
-    &.router-link-exact-active {
-      color: green;
-    }
+  &:hover {
+    color: var(--blue-700);
   }
 }
 </style>

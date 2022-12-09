@@ -6,14 +6,7 @@
     "strict": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "lib": [
-      "es5",
-      "dom"
-    ],
-    "types": [
-      "cypress",
-      "node",
-      "./support"
-    ]
+    "lib": ["es5", "dom"],
+    "types": ["cypress", "node", "./support"]
   }
 }
